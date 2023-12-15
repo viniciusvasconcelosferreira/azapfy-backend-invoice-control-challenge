@@ -74,7 +74,7 @@ Antes de começar, certifique-se de ter instalado as seguintes ferramentas, depe
 
 1. Clone o repositório
    ```bash
-   git clone https://github.com/seu-usuario/azapfy-backend-invoice-control-challenge.git
+   git clone https://github.com/viniciusvasconcelosferreira/azapfy-backend-invoice-control-challenge.git
    ```
 
 2. Entre no diretório do projeto
@@ -103,7 +103,7 @@ Antes de começar, certifique-se de ter instalado as seguintes ferramentas, depe
 
 1. Clone o repositório
    ```bash
-   git clone https://github.com/seu-usuario/azapfy-backend-invoice-control-challenge.git
+   git clone https://github.com/viniciusvasconcelosferreira/azapfy-backend-invoice-control-challenge.git
    ```
 
 2. Entre no diretório do projeto
