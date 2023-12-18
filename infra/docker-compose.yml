@@ -7,11 +7,10 @@ services:
     ports:
       - "8080:80"
     networks:
-      - internal
+      - azapfy-network
     volumes:
-      - ./app:/var/www/html  # Aplicação Laravel
-      - ./.docker/nginx:/etc/nginx/conf.d  # Configurações do Nginx
-      - ./logs/nginx:/var/log/nginx  # Logs do Nginx
+      - ../api:/var/www/html
+      - ./logs/nginx:/var/log/nginx
     container_name: azapfy-nginx
 
   php:
@@ -19,11 +18,10 @@ services:
       context: .
       dockerfile: php/Dockerfile
     networks:
-      - internal
+      - azapfy-network
     volumes:
-      - ./app:/var/www/html
-      - ./.docker/php:/usr/local/etc/php/conf.d  # Configurações do PHP
-      - ./logs/php.log:/var/log/fpm-php.www.log  # Logs do PHP-FPM
+      - ../api:/var/www/html
+      - ./logs/php.log:/var/log/fpm-php.www.log
     container_name: azapfy-php
     expose:
       - "9000"
@@ -41,8 +39,8 @@ services:
     volumes:
       - ./mysql/db-data:/var/lib/mysql
     networks:
-      - internal
+      - azapfy-network
 
 networks:
-  internal:
+  azapfy-network:
     driver: bridge

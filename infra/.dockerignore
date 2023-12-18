@@ -1,0 +1,5 @@
+# Ignorar logs
+logs/
+
+# Ignorar dados do MySQL
+mysql/
