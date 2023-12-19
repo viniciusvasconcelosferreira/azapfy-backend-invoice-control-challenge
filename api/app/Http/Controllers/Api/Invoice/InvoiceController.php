@@ -7,9 +7,11 @@ use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
 use App\Http\Resources\InvoiceResource;
 use App\Models\Invoice;
+use App\Notifications\InvoiceCreatedNotification;
 use App\Services\InvoiceService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class InvoiceController extends Controller
 {
@@ -44,10 +46,22 @@ class InvoiceController extends Controller
 
         $invoice = $this->invoiceService->createInvoice($request);
 
-        $invoiceResource = new InvoiceResource($invoice);
-        $invoiceResource->message = 'Invoice created successfully';
+        try {
+            $user = auth()->user();
+            $user->notify(new InvoiceCreatedNotification($invoice));
 
-        return $invoiceResource;
+            $invoiceResource = new InvoiceResource($invoice);
+            $invoiceResource->message = 'Invoice created successfully';
+            return $invoiceResource;
+        } catch (\Exception $e) {
+            Log::error('Error sending notification: ' . $e->getMessage());
+
+            // Continuar com a resposta do recurso da nota fiscal
+            $invoiceResource = new InvoiceResource($invoice);
+            $invoiceResource->message = 'Invoice created successfully (notification failed)';
+            return $invoiceResource;
+        }
+
     }
 
     /**
@@ -80,7 +94,7 @@ class InvoiceController extends Controller
 
         $this->authorize('update', $invoice);
 
-        $invoice = $this->invoiceService->updateInvoice($request,$invoice);
+        $invoice = $this->invoiceService->updateInvoice($request, $invoice);
 
         $invoiceResource = new InvoiceResource($invoice);
         $invoiceResource->message = 'Invoice updated successfully';

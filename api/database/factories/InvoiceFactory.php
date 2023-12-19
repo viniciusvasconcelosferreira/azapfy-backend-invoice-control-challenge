@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,12 +19,13 @@ class InvoiceFactory extends Factory
     {
         return [
             'number' => fake()->numerify('#########'),
-            'value' => fake()->randomFloat(2),
+            'value' => fake()->randomFloat(2,'1','999999999'),
             'issue_date' => fake()->date(),
-            'sender_cnpj' => fake('pt_BR')->cnpj(),
+            'sender_cnpj' => fake('pt_BR')->cnpj(false),
             'sender_name' => fake()->name(),
-            'carrier_cnpj' => fake('pt_BR')->cnpj(),
+            'carrier_cnpj' => fake('pt_BR')->cnpj(false),
             'carrier_name' => fake()->name(),
+            'user_id' => User::factory()->create()->id
         ];
     }
 }
