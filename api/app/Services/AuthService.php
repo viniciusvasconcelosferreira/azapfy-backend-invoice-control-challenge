@@ -45,15 +45,4 @@ class AuthService
             'message' => 'Successfully logged out',
         ]);
     }
-
-    public function refresh()
-    {
-        return response()->json([
-            'user' => Auth::user(),
-            'authorisation' => [
-                'token' => Auth::refresh(),
-                'type' => 'bearer',
-            ]
-        ]);
-    }
 }

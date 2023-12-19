@@ -30,9 +30,4 @@ class AuthController extends Controller
     {
         return $authService->logout();
     }
-
-    public function refresh(AuthService $authService): JsonResponse
-    {
-        return $authService->refresh();
-    }
 }
