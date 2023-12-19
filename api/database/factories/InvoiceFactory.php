@@ -17,13 +17,13 @@ class InvoiceFactory extends Factory
     public function definition(): array
     {
         return [
-            'numero' => fake()->numerify('#########'),
-            'valor' => fake()->randomFloat(2),
-            'data_emissao' => fake()->date(),
-            'cnpj_remetente' => fake('pt_BR')->cnpj(),
-            'nome_remetente' => fake()->name(),
-            'cnpj_transportador' => fake('pt_BR')->cnpj(),
-            'nome_transportador' => fake()->name(),
+            'number' => fake()->numerify('#########'),
+            'value' => fake()->randomFloat(2),
+            'issue_date' => fake()->date(),
+            'sender_cnpj' => fake('pt_BR')->cnpj(),
+            'sender_name' => fake()->name(),
+            'carrier_cnpj' => fake('pt_BR')->cnpj(),
+            'carrier_name' => fake()->name(),
         ];
     }
 }

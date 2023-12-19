@@ -11,13 +11,13 @@ class Invoice extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'numero',
-        'valor',
-        'data_emissao',
-        'cnpj_remetente',
-        'nome_remetente',
-        'cnpj_transportador',
-        'nome_transportador'
+        'number',
+        'value',
+        'issue_date',
+        'sender_cnpj',
+        'sender_name',
+        'carrier_cnpj',
+        'carrier_name'
     ];
 
     public function user()

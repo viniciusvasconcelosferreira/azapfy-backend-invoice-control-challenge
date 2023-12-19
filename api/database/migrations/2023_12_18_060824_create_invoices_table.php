@@ -12,14 +12,17 @@ return new class extends Migration {
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->string('numero', 9);
-            $table->decimal('valor');
-            $table->date('data_emissao');
-            $table->string('cnpj_remetente');
-            $table->string('nome_remetente', 100);
-            $table->string('cnpj_transportador');
-            $table->string('nome_transportador', 100);
+            $table->string('number', 9)->unique();
+            $table->decimal('value', 10, 2);
+            $table->date('issue_date');
+            $table->string('sender_cnpj', 14)->nullable();
+            $table->string('sender_name', 100);
+            $table->string('carrier_cnpj', 14)->nullable();
+            $table->string('carrier_name', 100);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
