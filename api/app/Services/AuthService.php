@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Http\Requests\LoginAuthRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class AuthService
@@ -24,9 +25,17 @@ class AuthService
             ]);
         }
 
+        $user = User::where('email', $credentials['email'])->first();
+
+        if ($user) {
+            return response()->json([
+                'message' => 'Invalid credentials',
+            ], 401);
+        }
+
         return response()->json([
-            'message' => 'Invalid credentials',
-        ], 401);
+            'message' => 'User not found',
+        ], 404);
     }
 
     public function logout()
