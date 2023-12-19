@@ -67,6 +67,20 @@ Antes de começar, certifique-se de ter instalado as seguintes ferramentas, depe
 - `routes/`: Define as rotas da API.
 - `tests/`: Testes automatizados.
 - `resources/`: Contém os recursos como notificações e transformações de dados.
+- `docs/`: Documentação das rotas, incluindo pacotes para Insomnia.
+- `infra/`: Arquivos relacionados à infraestrutura, como Dockerfile, docker-compose e configurações do nginx.
+
+O projeto final ficou com esta estrutura:
+
+- Arquivos do projeto Laravel: `api/`
+- Documentação das rotas: `docs/`
+- Arquivos de infraestrutura (Docker, nginx, etc.): `infra/`
+
+
+## Documentação da API
+
+A documentação completa da API, incluindo exemplos de requisições e informações sobre rotas, está disponível na pasta [docs](./docs).
+
 
 ## Instalação
 
