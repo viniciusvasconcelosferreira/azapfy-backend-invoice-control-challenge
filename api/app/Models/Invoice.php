@@ -17,11 +17,12 @@ class Invoice extends Model
         'sender_cnpj',
         'sender_name',
         'carrier_cnpj',
-        'carrier_name'
+        'carrier_name',
+        'user_id'
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -11,7 +11,7 @@ class StoreInvoiceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -22,7 +22,13 @@ class StoreInvoiceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'number' => 'required|string|size:9',
+            'value' => 'required|numeric|min:1',
+            'issue_date' => 'required|date|date_format:Y-m-d|before:' . now()->format('Y-m-d'),
+            'sender_cnpj' => 'required|string|cnpj',
+            'sender_name' => 'required|string|max:100',
+            'carrier_cnpj' => 'required|string|cnpj',
+            'carrier_name' => 'required|string|max:100',
         ];
     }
 }

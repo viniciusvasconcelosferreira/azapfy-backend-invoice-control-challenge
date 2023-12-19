@@ -16,5 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::resource('/invoices', InvoiceController::class);
+    Route::resource('/invoices', InvoiceController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
 });

@@ -11,7 +11,7 @@ class UpdateInvoiceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -22,7 +22,13 @@ class UpdateInvoiceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'number' => 'string|size:9',
+            'value' => 'numeric|min:1',
+            'issue_date' => 'date|date_format:Y-m-d|before:' . now()->format('Y-m-d'),
+            'sender_cnpj' => 'string|cnpj',
+            'sender_name' => 'string|max:100',
+            'carrier_cnpj' => 'string|cnpj',
+            'carrier_name' => 'string|max:100',
         ];
     }
 }
